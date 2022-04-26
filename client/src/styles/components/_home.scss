@@ -1,15 +1,22 @@
 .accueil_bg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background: url(../../../public/img/vinyle-left_1920.jpg);
+    background: url(../../img/vinyl.png);
     background-size: cover;
 
-    h1 {
-        font-size: 50px;
-        font-weight: 400;
+    .h1_container {
+        display: flex;
+        justify-content: center;
+        margin-top: 12rem;
+
+        h1 {
+        font-size: 3rem;
+        font-weight: 500;
+        }
+
+        .quote_author {
+            margin-left: 28rem;
+        }
     }
 }

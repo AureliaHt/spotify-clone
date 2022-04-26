@@ -1,0 +1,82 @@
+header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.mu_logo {
+        width: 19vw;
+        margin-left: 3rem;
+        margin-top: 5rem;
+    }
+
+.nav_wrapper {
+    display: flex;
+    justify-content: end;
+    background-color: transparent;
+    height: 15vh;
+    width: 100vw;
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 6vh;
+        width: 80vw;
+        background-color: $color-2;
+        padding: 0 2rem;
+        border-radius: 0 0 0 60px;
+        font-weight: 500;
+
+        .sign_in {
+            display: flex;
+            align-items: center;
+            margin-left: 3rem;
+        }
+
+        .sign_up {
+            display: flex;
+            align-items: center;
+
+            button {
+                cursor: pointer;
+                background-color: transparent;
+                border-radius: 40px;
+                border: solid 1px $color-1;
+                color: $color-1;
+                font-size: 1rem;
+                font-family: $font-1;
+                font-weight: 500;
+                padding: 0.5rem 2rem;
+                margin-left: -22rem;
+            }
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: $spacing-lg;
+            list-style: none;
+            @include breakpoint(md) {
+                flex-direction: row;
+                margin-bottom: 0;
+                margin-left: 5rem;
+            }
+
+            li {
+                padding: 1rem 2rem;
+            }
+        }
+
+        .navbar_toggle {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: 0.3 ease all;
+            @include breakpoint(md) {
+                display: none;
+            }
+        }
+    }
+}

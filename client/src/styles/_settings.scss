@@ -24,3 +24,20 @@ body {
 h1 {
     font-family: $font-1;
 }
+
+a:visited {
+    color: $color-1;
+}
+
+$headerHeight: 25vh;
+
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+
+@mixin breakpoint($point) {
+    @if $point == md {
+        @media (min-width: 48em) {
+            @content;
+        }
+    }
+}
