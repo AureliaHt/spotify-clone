@@ -1,8 +1,10 @@
+import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
     <div className="accueil_bg">
+      <Header />
       <Navbar />
       <div className="h1_container">
         <h1>

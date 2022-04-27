@@ -1,0 +1,56 @@
+.signUp_modal {
+    background-color: $color-5;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 70vh;
+    width: 18vw;
+    border-radius: 70px;
+    z-index: 1000;
+
+    &_header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10%;
+        width: 100%;
+        background-color: darkgray;
+        border-radius: 70px 70px 0 0;
+        color: $color-4;
+        font-size: 17px;
+        font-weight: 400;
+    }
+
+    &_body {
+        display: flex;
+        justify-content: center;
+        height: 90%;
+        width: 100%;
+        border-radius: 0 0 70px 70px;
+
+        &_input {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 3rem;
+
+            input {
+                height: 5vh;
+                width: 13vw;
+                background-color: darkgrey;
+                border: transparent;
+                border-radius: 30px;
+                margin-top: 1rem;
+                padding: 0 3rem;
+
+                &::placeholder {
+                    color: $color-4;
+                    font-family: $font-1;
+                    font-weight: 500;
+                    font-size: 1.1em;
+                }
+            }
+        }
+    }
+}
+

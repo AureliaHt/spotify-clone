@@ -1,19 +1,9 @@
-header {
-    display: flex;
-    align-items: flex-start;
-}
-
-.mu_logo {
-        width: 19vw;
-        margin-left: 3rem;
-        margin-top: 5rem;
-    }
-
 .nav_wrapper {
     display: flex;
     justify-content: end;
-    background-color: transparent;
-    height: 15vh;
+    margin-left: auto;
+    margin-top: -15.5rem;
+    height: 100vh;
     width: 100vw;
 
     nav {
@@ -33,11 +23,7 @@ header {
             margin-left: 3rem;
         }
 
-        .sign_up {
-            display: flex;
-            align-items: center;
-
-            button {
+            .signUp_button {
                 cursor: pointer;
                 background-color: transparent;
                 border-radius: 40px;
@@ -47,8 +33,15 @@ header {
                 font-family: $font-1;
                 font-weight: 500;
                 padding: 0.5rem 2rem;
-                margin-left: -22rem;
             }
+
+        .signUp_modal_wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            width: 40%;
+            margin-top: 60rem;
         }
 
         ul {

@@ -4,11 +4,14 @@
     overflow: hidden;
     background: url(../../img/vinyl.png);
     background-size: cover;
+    z-index: -100;
+}
 
     .h1_container {
         display: flex;
         justify-content: center;
-        margin-top: 12rem;
+        margin-top: -33rem;
+        z-index: 100;
 
         h1 {
         font-size: 3rem;
@@ -19,4 +22,3 @@
             margin-left: 28rem;
         }
     }
-}
