@@ -51,6 +51,51 @@
                 }
             }
         }
+
+        &_buttons {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 5rem;
+
+            .signUp_modal_validation_button {
+                position: relative;
+                height: 4.5vh;
+                width: 9vw;
+                margin-left: auto;
+                margin-right: auto;
+                background-color: darkgray;
+                border: transparent;
+                border-radius: 30px;
+                font-size: 17px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $color-3;
+                    color: $color-1;
+                }
+            }
+
+            .signUp_modal_closure_button {
+                height: 4.5vh;
+                width: 9vw;
+                margin-top: 1rem;
+                margin-left: auto;
+                margin-right: auto;
+                background-color: darkgray;
+                border: transparent;
+                border-radius: 30px;
+                font-size: 15px;
+                cursor: pointer;
+            }
+        }
+
+        &_signIn_redirection {
+            display: flex;
+            justify-content: center;
+            margin-top: 6.5rem;
+            font-size: 12px;
+        }
     }
 
     .valid {
@@ -85,6 +130,22 @@
 
     .hide {
         display: none;
+    }
+
+    .signUp_modal_conditions_checkbox{
+        display: flex;
+        flex-direction: row;
+
+        .conditions_checkbox {
+            height: 1.5vh;
+            margin-left: -6.4rem;
+        }
+
+        .conditions_sentence {
+            font-size: 12px;
+            margin-top: 1.05rem;
+            margin-left: -6.4rem;
+        }
     }
 }
 

@@ -1,9 +1,16 @@
+import { useState } from "react";
 import SignUpModal from "./SignUpModal";
 import SignInUser from "../img/user_white.png";
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
 const Navbar = () => {
+    const [signUpPopUp, setSignUpPopUp] = useState(false);
+
+    const handleClickOpenSignUpPopUp = () => {
+        setSignUpPopUp(!signUpPopUp);
+    }
+
   return (
     <div className="navbar_section">
       <div className="nav_wrapper">
@@ -18,10 +25,14 @@ const Navbar = () => {
               />
             </a>
           </div>
-          <button className="signUp_button">S'inscrire</button>
+          <button 
+            onClick={handleClickOpenSignUpPopUp}
+            className="signUp_button"
+          >S'inscrire</button>
+          {signUpPopUp?
           <div className="signUp_modal_wrapper">
             <SignUpModal />
-          </div>
+          </div>:""}
           <div className="navbar_content">
             <ul>
               <li>

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { ImCheckmark, ImCancelCircle, ImInfo } from "react-icons/im";
+import { ImCheckmark, ImCancelCircle, ImInfo, ImCross} from "react-icons/im";
 import axios from "../api/axios";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-z0-9-_]{3,23}$/;
@@ -194,6 +194,27 @@ const SignUpModal = () => {
               <span aria-label="dollar">$</span>
               <span aria-label="pourcentage">%</span>
             </p>
+            </div>
+
+            <div className="signUp_modal_conditions_checkbox">
+                <input 
+                    type="checkbox"
+                    className="conditions_checkbox"
+                />
+                <p className="conditions_sentence">J'accepte les conditions</p>
+            </div>
+
+            <div className="signUp_modal_body_buttons">
+                <button className="signUp_modal_validation_button">
+                  <ImCheckmark />
+                </button>
+                <button className="signUp_modal_closure_button">
+                  <ImCross />
+                </button>
+            </div>
+
+            <div className="signUp_modal_body_signIn_redirection">
+                <p>Déjà un compte ? Se connecter ici</p>
             </div>
 
           </div>
