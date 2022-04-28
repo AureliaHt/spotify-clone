@@ -52,5 +52,39 @@
             }
         }
     }
+
+    .valid {
+        color: $color-3;
+        margin-left: -2.3rem;
+    }
+
+    .invalid {
+        color: darkred;
+        margin-left: -2.3rem;
+    }
+
+    .instructions {
+        width: 13vw;
+        font-size: 0.75rem;
+        border-radius: 0.5rem;
+        background: rgba(0, 0, 0, 0.753);
+        color: #fff;
+        padding: 0.25rem;
+        position: relative;
+        bottom: -10px;
+
+        .instructions > svg {
+            margin-right: 0.25rem;
+        }
+    }
+
+    .offscreen {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .hide {
+        display: none;
+    }
 }
 

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { GrCheckmark, GrClose, GrCircleInformation } from "react-icons/gr";
+import { ImCheckmark, ImCancelCircle, ImInfo } from "react-icons/im";
 import axios from "../api/axios";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-z0-9-_]{3,23}$/;
@@ -27,22 +27,33 @@ const SignUpModal = () => {
   const [sucess, setSuccess] = useState(false);
 
   useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
     const result = USER_REGEX.test(user);
     console.log(result);
     console.log(user);
+    setValidName(result);
   }, [user]);
 
   useEffect(() => {
     const result = EMAIL_REGEX.test(email);
     console.log(result);
     console.log(email);
+    setValidEmail(result);
   }, [email]);
 
   useEffect(() => {
     const result = PWD_REGEX.test(password);
     console.log(result);
     console.log(password);
+    setValidPassword(result);
   }, [password])
+
+  useEffect(() => {
+    setErrMessage("");
+  }, [user, email, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,6 +97,8 @@ const SignUpModal = () => {
       <div className="signUp_modal_body">
         <form onSubmit={handleSubmit}>
           <div className="signUp_modal_body_input">
+
+            <div className="signUp_modal_body_input_username">
             <label htmlFor="identifiant"></label>
             <input 
               type="text" 
@@ -100,7 +113,24 @@ const SignUpModal = () => {
               onFocus={() => setUserFocus(true)}
               onBlur={() => setUserFocus(false)}
             />
+            <span className={validName ? "valid" : "hide"}>
+                <ImCheckmark />
+              </span>
+              <span className={validName || !user ? "hide" : "invalid"}>
+                <ImCancelCircle />
+              </span>
+            <p
+              id="uidnote"
+              className={userFocus && user && !validName ? "instructions" : "offscreen"}
+            >
+              <ImInfo />
+               4 à 24 caractères. <br />
+              Doit commencer par une lettre. <br />
+              Les lettres, nombres, underscores et tirets sont acceptés.
+            </p>
+            </div>
 
+            <div className="signUp_modal_body_input_email">
             <label htmlFor="email"></label>
             <input 
               type="text" 
@@ -114,7 +144,22 @@ const SignUpModal = () => {
               onFocus={() => setEmailFocus(true)}
               onBlur={() => setEmailFocus(false)}
             />
+            <span className={validEmail ? "valid" : "hide"}>
+                <ImCheckmark />
+              </span>
+              <span className={validEmail || !user ? "hide" : "invalid"}>
+                <ImCancelCircle />
+              </span>
+            <p
+              id="uenote"
+              className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}
+            >
+              <ImInfo />
+              L'adresse e-mail doit être valide.
+            </p>
+            </div>
 
+            <div className="signUp_modal_body_input_password">
             <label htmlFor="password"></label>
             <input 
               type="text" 
@@ -128,6 +173,29 @@ const SignUpModal = () => {
               onFocus={() => setPasswordFocus(true)}
               onBlur={() => setPasswordFocus(false)}
             />
+            <span className={validPassword ? "valid" : "hide"}>
+                <ImCheckmark />
+              </span>
+              <span className={validPassword || !user ? "hide" : "invalid"}>
+                <ImCancelCircle />
+              </span>
+            <p
+              id="pwdnote"
+              className={passwordFocus && password && !validPassword ? "instructions" : "offscreen"}
+            >
+              <ImInfo />
+              8 à 32 caractères. <br />
+              Doit contenir au moins une lettre majuscule, une lettre minuscule,
+              un nombre et un caractère spécial. <br />
+              Caractères acceptés :{" "}
+              <span aria-label="point d'exclamation">!</span>
+              <span aria-label="arobase">@</span>
+              <span aria-label="hashtag">#</span>
+              <span aria-label="dollar">$</span>
+              <span aria-label="pourcentage">%</span>
+            </p>
+            </div>
+
           </div>
         </form>
       </div>
