@@ -25,6 +25,7 @@ const Navbar = () => {
               />
             </a>
           </div>
+
           <button 
             onClick={handleClickOpenSignUpPopUp}
             className="signUp_button"
@@ -33,6 +34,7 @@ const Navbar = () => {
           <div className="signUp_modal_wrapper">
             <SignUpModal />
           </div>:""}
+
           <div className="navbar_content">
             <ul>
               <li>

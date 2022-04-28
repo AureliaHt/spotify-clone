@@ -24,6 +24,8 @@
         }
 
             .signUp_button {
+                position: absolute;
+                margin-left: 7rem;
                 cursor: pointer;
                 background-color: transparent;
                 border-radius: 40px;
@@ -42,6 +44,7 @@
             height: 80vh;
             width: 40%;
             margin-top: 60rem;
+            margin-left: 5rem;
         }
 
         ul {
