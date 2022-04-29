@@ -208,7 +208,9 @@ const SignUpModal = () => {
                 <button className="signUp_modal_validation_button">
                   <ImCheckmark />
                 </button>
-                <button className="signUp_modal_closure_button">
+                <button 
+                  className="signUp_modal_closure_button"
+                >
                   <ImCross />
                 </button>
             </div>
