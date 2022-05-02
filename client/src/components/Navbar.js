@@ -1,14 +1,14 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import SignUpModal from "./SignUpModal";
 import SignInUser from "../img/user_white.png";
 import { BiMenuAltRight } from "react-icons/bi";
-import { AiOutlineClose } from "react-icons/ai";
-import ClickOutOfTheBox from "./ClickOutOFTheBox";
 
 const Navbar = () => {
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
-    const signUpModalRef = useRef(null);
-    ClickOutOfTheBox(signUpModalRef, () => setIsSignUpModalOpen(false));
+
+    const handleClick = () => {
+        setIsSignUpModalOpen(!isSignUpModalOpen);
+    }
 
   return (
     <div className="navbar_section">
@@ -27,13 +27,14 @@ const Navbar = () => {
 
           <button 
             type="button"
-            ref={signUpModalRef}
-            onClick={() => setIsSignUpModalOpen(!isSignUpModalOpen)}
+            onClick={(handleClick)}
             className="signUp_button"
           >S'inscrire</button>
           {isSignUpModalOpen && 
           <div className="signUp_modal_wrapper">
-            <SignUpModal />
+            <SignUpModal 
+            //onClose={() => setIsSignUpModalOpen(false)}
+            />
           </div>}
 
           <div className="navbar_content">

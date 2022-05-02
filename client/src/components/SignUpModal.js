@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { ImCheckmark, ImCancelCircle, ImInfo, ImCross} from "react-icons/im";
+import { ImCheckmark, ImCancelCircle, ImInfo, ImCross, ImEyeBlocked, ImEye } from "react-icons/im";
 import axios from "../api/axios";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-z0-9-_]{3,23}$/;
@@ -7,9 +7,10 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,32}$/;
 const REGISTER_URL = "/register";
 
-const SignUpModal = () => {
+const SignUpModal = ({onClose}) => {
   const userRef = useRef();
   const errRef = useRef();
+  const closeModalRef = useRef();
 
   const [user, setUser] = useState("");
   const [validName, setValidName] = useState(false);
@@ -25,6 +26,9 @@ const SignUpModal = () => {
 
   const [errMessage, setErrMessage] = useState("");
   const [sucess, setSuccess] = useState(false);
+
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [passwordIcon, setPasswordIcon] = useState(<ImEye/>);
 
   useEffect(() => {
     userRef.current.focus();
@@ -55,8 +59,32 @@ const SignUpModal = () => {
     setErrMessage("");
   }, [user, email, password]);
 
+  useEffect(() => {
+    const clickOutOfTheModal = (e) => {
+      if (closeModalRef.current && !closeModalRef.current.contains(e.target)){
+        onClose();
+      }
+    };
+    document.addEventListener('click', clickOutOfTheModal);
+    document.addEventListener('touchstart', clickOutOfTheModal);
+    return () => {
+      document.removeEventListener('click', clickOutOfTheModal);
+      document.removeEventListener('touchstart', clickOutOfTheModal);
+    };
+  }, [onClose]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+  const handlePasswordVisibility = () => {
+        if (passwordIcon === <ImEye/>) {
+            setPasswordIcon(<ImEyeBlocked/>);
+            setPasswordVisibility(!passwordVisibility);
+        } else if (passwordIcon === <ImEyeBlocked/>) {
+            setPasswordIcon(<ImEye/>);
+            setPasswordVisibility(!passwordVisibility);
+        }
+    };
 
   const v1 = USER_REGEX.test(user);
   const v2 = EMAIL_REGEX.test(email);
@@ -90,7 +118,11 @@ const SignUpModal = () => {
  
   return (
     <>
-    <div className="signUp_modal">
+    <div 
+      ref={closeModalRef}
+      //onClose={() => setIsSignUpModalOpen(false)}
+      className="signUp_modal"
+    >
       <div className="signUp_modal_header">
         <h2>S'inscrire</h2>
       </div>
@@ -162,22 +194,26 @@ const SignUpModal = () => {
             <div className="signUp_modal_body_input_password">
             <label htmlFor="password"></label>
             <input 
-              type="text" 
+              type="password"
               id="password"
               placeholder="mot de passe"
               autoComplete="off"
               onChange={(e) => setPassword(e.target.value)}
               required
+              autoCapitalize={'none'}
+              secureTextEntry={passwordVisibility}
               aria-invalid={validPassword ? "false" : "true"}
               aria-describedby="pwdnote"
               onFocus={() => setPasswordFocus(true)}
               onBlur={() => setPasswordFocus(false)}
             />
+            <button 
+              className="password_visibility_button"
+              //onClick={handlePasswordVisibility}
+              button={passwordIcon} 
+            ></button>
             <span className={validPassword ? "valid" : "hide"}>
                 <ImCheckmark />
-              </span>
-              <span className={validPassword || !user ? "hide" : "invalid"}>
-                <ImCancelCircle />
               </span>
             <p
               id="pwdnote"
@@ -186,7 +222,7 @@ const SignUpModal = () => {
               <ImInfo />
               8 à 32 caractères. <br />
               Doit contenir au moins une lettre majuscule, une lettre minuscule,
-              un nombre et un caractère spécial. <br />
+              un chiffre et un caractère spécial. <br />
               Caractères acceptés :{" "}
               <span aria-label="point d'exclamation">!</span>
               <span aria-label="arobase">@</span>
@@ -209,6 +245,7 @@ const SignUpModal = () => {
                   <ImCheckmark />
                 </button>
                 <button 
+                  onClick={onClose}
                   className="signUp_modal_closure_button"
                 >
                   <ImCross />
